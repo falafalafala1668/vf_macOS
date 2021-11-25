@@ -7,6 +7,7 @@
 
 import Virtualization
 
+var showGUI = false
 var isCreate = false
 var ipswPath = String()
 var vmFolder = String()
@@ -17,11 +18,13 @@ var memory = UInt64()
 //print(CommandLine.arguments)
 
 repeat {
-    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "n:f:b:p:m:")
+    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "gn:f:b:p:m:")
     if ch == -1 {
         break
     }
     switch UnicodeScalar(Int(ch)).flatMap(Character.init) {
+    case "g":
+        showGUI = true;
     case "n":
         isCreate = true;
         ipswPath = String(cString: optarg)
@@ -56,6 +59,15 @@ if isCreate {
         window.contentViewController = vc
     })
 }
+
+if showGUI {
+    let ad = VFMAppDelegate()
+    ad.window = window
+    let app = NSApplication.shared
+    app.delegate = ad;
+    app.run()
+}
+
 RunLoop.main.run(until: Date.distantFuture)
 
 

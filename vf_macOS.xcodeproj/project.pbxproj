@@ -10,6 +10,7 @@
 		3337F528274E7DBE005849F9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337F525274E7DAC005849F9 /* main.swift */; };
 		3337F529274E7DBF005849F9 /* VFMInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337F526274E7DAC005849F9 /* VFMInstance.swift */; };
 		3337F52A274E7DC2005849F9 /* VFMVirtualMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337F521274E7DAC005849F9 /* VFMVirtualMachineViewController.swift */; };
+		337E1684274F629700CA16CB /* VFMAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337E1683274F629700CA16CB /* VFMAppDelegate.swift */; };
 		33DD4FDD274E80B100E46DF2 /* vf_macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD4FDC274E80B100E46DF2 /* vf_macOSApp.swift */; };
 		33DD4FDF274E80B100E46DF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD4FDE274E80B100E46DF2 /* ContentView.swift */; };
 		33DD4FE1274E80B800E46DF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33DD4FE0274E80B800E46DF2 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		3337F521274E7DAC005849F9 /* VFMVirtualMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VFMVirtualMachineViewController.swift; sourceTree = "<group>"; };
 		3337F525274E7DAC005849F9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3337F526274E7DAC005849F9 /* VFMInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VFMInstance.swift; sourceTree = "<group>"; };
+		337E1683274F629700CA16CB /* VFMAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VFMAppDelegate.swift; sourceTree = "<group>"; };
 		33DD4FDA274E80B100E46DF2 /* vf_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vf_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33DD4FDC274E80B100E46DF2 /* vf_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vf_macOSApp.swift; sourceTree = "<group>"; };
 		33DD4FDE274E80B100E46DF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				3337F525274E7DAC005849F9 /* main.swift */,
+				337E1683274F629700CA16CB /* VFMAppDelegate.swift */,
 				3337F521274E7DAC005849F9 /* VFMVirtualMachineViewController.swift */,
 			);
 			path = vfnogui_macOS;
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337E1684274F629700CA16CB /* VFMAppDelegate.swift in Sources */,
 				3337F52A274E7DC2005849F9 /* VFMVirtualMachineViewController.swift in Sources */,
 				3337F528274E7DBE005849F9 /* main.swift in Sources */,
 				3337F529274E7DBF005849F9 /* VFMInstance.swift in Sources */,

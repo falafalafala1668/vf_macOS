@@ -59,7 +59,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
                 case .success(let image):
                     self.startForInstallation(
                         image: image,
-                    diskImageSize: 32)
+                    diskImageSize: 50)
                 case .failure(let error):
 //                    self.isInstalling = false
                     completion(false)
