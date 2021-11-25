@@ -59,7 +59,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
                 case .success(let image):
                     self.startForInstallation(
                         image: image,
-                    diskImageSize: 50)
+                    diskImageSize: 40)
                 case .failure(let error):
 //                    self.isInstalling = false
                     completion(false)
@@ -222,8 +222,15 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
                 readOnly: false
             )
             
+//            let attachment_tm = try VZDiskImageStorageDeviceAttachment(
+//                url: vmURL.appendingPathComponent("tmback.img"),
+//                readOnly: false
+//            )
+            
             let storage = VZVirtioBlockDeviceConfiguration(attachment: attachment)
+//            let storage_tm = VZVirtioBlockDeviceConfiguration(attachment: attachment_tm)
             storages.append(storage)
+//            storages.append(storage_tm)
         } catch {
             NSLog("Storage Error: \(error)")
         }
