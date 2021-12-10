@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3337F515274E7D3D005849F9"
-               BuildableName = "vfnogui_macOS"
+               BuildableName = "vf_macOS"
                BlueprintName = "vf_macOS"
                ReferencedContainer = "container:vf_macOS.xcodeproj">
             </BuildableReference>
@@ -45,17 +45,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3337F515274E7D3D005849F9"
-            BuildableName = "vfnogui_macOS"
+            BuildableName = "vf_macOS"
             BlueprintName = "vf_macOS"
             ReferencedContainer = "container:vf_macOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-f /Users/mianmian/Documents/vmtest"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -68,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3337F515274E7D3D005849F9"
-            BuildableName = "vfnogui_macOS"
+            BuildableName = "vf_macOS"
             BlueprintName = "vf_macOS"
             ReferencedContainer = "container:vf_macOS.xcodeproj">
          </BuildableReference>
