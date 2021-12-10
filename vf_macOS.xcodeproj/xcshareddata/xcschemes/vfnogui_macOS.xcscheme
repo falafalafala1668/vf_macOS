@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3337F515274E7D3D005849F9"
                BuildableName = "vfnogui_macOS"
-               BlueprintName = "vfnogui_macOS"
+               BlueprintName = "vf_macOS"
                ReferencedContainer = "container:vf_macOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,17 +46,13 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3337F515274E7D3D005849F9"
             BuildableName = "vfnogui_macOS"
-            BlueprintName = "vfnogui_macOS"
+            BlueprintName = "vf_macOS"
             ReferencedContainer = "container:vf_macOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-f /Volumes/Public\ Data/PMVM"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-g"
+            argument = "-f /Users/mianmian/Documents/vmtest"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -73,7 +69,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3337F515274E7D3D005849F9"
             BuildableName = "vfnogui_macOS"
-            BlueprintName = "vfnogui_macOS"
+            BlueprintName = "vf_macOS"
             ReferencedContainer = "container:vf_macOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

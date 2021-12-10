@@ -11,10 +11,6 @@
 		3337F529274E7DBF005849F9 /* VFMInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337F526274E7DAC005849F9 /* VFMInstance.swift */; };
 		3337F52A274E7DC2005849F9 /* VFMVirtualMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337F521274E7DAC005849F9 /* VFMVirtualMachineViewController.swift */; };
 		337E1684274F629700CA16CB /* VFMAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337E1683274F629700CA16CB /* VFMAppDelegate.swift */; };
-		33DD4FDD274E80B100E46DF2 /* vf_macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD4FDC274E80B100E46DF2 /* vf_macOSApp.swift */; };
-		33DD4FDF274E80B100E46DF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD4FDE274E80B100E46DF2 /* ContentView.swift */; };
-		33DD4FE1274E80B800E46DF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33DD4FE0274E80B800E46DF2 /* Assets.xcassets */; };
-		33DD4FE4274E80B800E46DF2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33DD4FE3274E80B800E46DF2 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,16 +26,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3337F516274E7D3D005849F9 /* vfnogui_macOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vfnogui_macOS; sourceTree = BUILT_PRODUCTS_DIR; };
+		33276DBE2761E67F00FA2118 /* vfnogui_macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vfnogui_macOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		33276DC52762057800FA2118 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		33276DC62762057900FA2118 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		33276DC9276205B000FA2118 /* _VZVirtualMachineStartOptions+_VZVirtualMachineStartOptions_CrackRecovery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_VZVirtualMachineStartOptions+_VZVirtualMachineStartOptions_CrackRecovery.m"; sourceTree = "<group>"; };
+		3337F516274E7D3D005849F9 /* vf_macOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vf_macOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		3337F521274E7DAC005849F9 /* VFMVirtualMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VFMVirtualMachineViewController.swift; sourceTree = "<group>"; };
 		3337F525274E7DAC005849F9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3337F526274E7DAC005849F9 /* VFMInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VFMInstance.swift; sourceTree = "<group>"; };
 		337E1683274F629700CA16CB /* VFMAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VFMAppDelegate.swift; sourceTree = "<group>"; };
-		33DD4FDA274E80B100E46DF2 /* vf_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vf_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		33DD4FDC274E80B100E46DF2 /* vf_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vf_macOSApp.swift; sourceTree = "<group>"; };
-		33DD4FDE274E80B100E46DF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		33DD4FE0274E80B800E46DF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		33DD4FE3274E80B800E46DF2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		33DD4FE9274E80C200E46DF2 /* vf_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vf_macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,33 +46,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		33DD4FD7274E80B100E46DF2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3337F51D274E7DAC005849F9 /* vfnogui_macOS */ = {
+		3337F51D274E7DAC005849F9 /* vf_macOS */ = {
 			isa = PBXGroup;
 			children = (
+				3337F526274E7DAC005849F9 /* VFMInstance.swift */,
 				3337F525274E7DAC005849F9 /* main.swift */,
 				337E1683274F629700CA16CB /* VFMAppDelegate.swift */,
 				3337F521274E7DAC005849F9 /* VFMVirtualMachineViewController.swift */,
 			);
-			path = vfnogui_macOS;
+			path = vf_macOS;
 			sourceTree = "<group>";
 		};
 		333F08E3274A352D00A1FD65 = {
 			isa = PBXGroup;
 			children = (
 				33DD4FE9274E80C200E46DF2 /* vf_macOS.entitlements */,
-				3337F526274E7DAC005849F9 /* VFMInstance.swift */,
-				3337F51D274E7DAC005849F9 /* vfnogui_macOS */,
-				33DD4FDB274E80B100E46DF2 /* vf_macOS */,
+				338C7B2027634D5E00CA6666 /* Private */,
+				3337F51D274E7DAC005849F9 /* vf_macOS */,
 				333F08ED274A352D00A1FD65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,37 +73,28 @@
 		333F08ED274A352D00A1FD65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3337F516274E7D3D005849F9 /* vfnogui_macOS */,
-				33DD4FDA274E80B100E46DF2 /* vf_macOS.app */,
+				3337F516274E7D3D005849F9 /* vf_macOS */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		33DD4FDB274E80B100E46DF2 /* vf_macOS */ = {
+		338C7B2027634D5E00CA6666 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				33DD4FDC274E80B100E46DF2 /* vf_macOSApp.swift */,
-				33DD4FDE274E80B100E46DF2 /* ContentView.swift */,
-				33DD4FE0274E80B800E46DF2 /* Assets.xcassets */,
-				33DD4FE2274E80B800E46DF2 /* Preview Content */,
+				33276DBE2761E67F00FA2118 /* vfnogui_macOS-Bridging-Header.h */,
+				33276DC9276205B000FA2118 /* _VZVirtualMachineStartOptions+_VZVirtualMachineStartOptions_CrackRecovery.m */,
+				33276DC52762057800FA2118 /* JRSwizzle.h */,
+				33276DC62762057900FA2118 /* JRSwizzle.m */,
 			);
-			path = vf_macOS;
-			sourceTree = "<group>";
-		};
-		33DD4FE2274E80B800E46DF2 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				33DD4FE3274E80B800E46DF2 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
+			path = Private;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3337F515274E7D3D005849F9 /* vfnogui_macOS */ = {
+		3337F515274E7D3D005849F9 /* vf_macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3337F51A274E7D3D005849F9 /* Build configuration list for PBXNativeTarget "vfnogui_macOS" */;
+			buildConfigurationList = 3337F51A274E7D3D005849F9 /* Build configuration list for PBXNativeTarget "vf_macOS" */;
 			buildPhases = (
 				3337F512274E7D3D005849F9 /* Sources */,
 				3337F513274E7D3D005849F9 /* Frameworks */,
@@ -125,27 +104,10 @@
 			);
 			dependencies = (
 			);
-			name = vfnogui_macOS;
-			productName = vfnogui_macOS;
-			productReference = 3337F516274E7D3D005849F9 /* vfnogui_macOS */;
-			productType = "com.apple.product-type.tool";
-		};
-		33DD4FD9274E80B100E46DF2 /* vf_macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 33DD4FE8274E80B800E46DF2 /* Build configuration list for PBXNativeTarget "vf_macOS" */;
-			buildPhases = (
-				33DD4FD6274E80B100E46DF2 /* Sources */,
-				33DD4FD7274E80B100E46DF2 /* Frameworks */,
-				33DD4FD8274E80B100E46DF2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
 			name = vf_macOS;
-			productName = vf_macOS;
-			productReference = 33DD4FDA274E80B100E46DF2 /* vf_macOS.app */;
-			productType = "com.apple.product-type.application";
+			productName = vfnogui_macOS;
+			productReference = 3337F516274E7D3D005849F9 /* vf_macOS */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -160,9 +122,7 @@
 				TargetAttributes = {
 					3337F515274E7D3D005849F9 = {
 						CreatedOnToolsVersion = 13.1;
-					};
-					33DD4FD9274E80B100E46DF2 = {
-						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 				};
 			};
@@ -179,23 +139,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3337F515274E7D3D005849F9 /* vfnogui_macOS */,
-				33DD4FD9274E80B100E46DF2 /* vf_macOS */,
+				3337F515274E7D3D005849F9 /* vf_macOS */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		33DD4FD8274E80B100E46DF2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33DD4FE4274E80B800E46DF2 /* Preview Assets.xcassets in Resources */,
-				33DD4FE1274E80B800E46DF2 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3337F512274E7D3D005849F9 /* Sources */ = {
@@ -209,25 +156,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		33DD4FD6274E80B100E46DF2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33DD4FDF274E80B100E46DF2 /* ContentView.swift in Sources */,
-				33DD4FDD274E80B100E46DF2 /* vf_macOSApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		3337F51B274E7D3D005849F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = arm64;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = vf_macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Private/vfnogui_macOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -235,10 +182,18 @@
 		3337F51C274E7D3D005849F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = arm64;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = vf_macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Private/vfnogui_macOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -358,60 +313,10 @@
 			};
 			name = Release;
 		};
-		33DD4FE6274E80B800E46DF2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = vf_macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"vf_macOS/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.mianmian.vf-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		33DD4FE7274E80B800E46DF2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = vf_macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"vf_macOS/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.mianmian.vf-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3337F51A274E7D3D005849F9 /* Build configuration list for PBXNativeTarget "vfnogui_macOS" */ = {
+		3337F51A274E7D3D005849F9 /* Build configuration list for PBXNativeTarget "vf_macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3337F51B274E7D3D005849F9 /* Debug */,
@@ -425,15 +330,6 @@
 			buildConfigurations = (
 				333F08F1274A352D00A1FD65 /* Debug */,
 				333F08F2274A352D00A1FD65 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		33DD4FE8274E80B800E46DF2 /* Build configuration list for PBXNativeTarget "vf_macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				33DD4FE6274E80B800E46DF2 /* Debug */,
-				33DD4FE7274E80B800E46DF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -3,4 +3,28 @@
    uuid = "CAE86E5E-C6D9-403E-8048-2E5A7677A8C1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
+         <BreakpointContent
+            uuid = "C680F662-FE91-49FC-9DD1-7B14F35C4C31"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "*0x2029dcf90">
+            <Locations>
+               <Location
+                  uuid = "C680F662-FE91-49FC-9DD1-7B14F35C4C31 - ca08bf1b42126dec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[VZVirtualMachineConfiguration _configurationForVirtualMachine:startOptions:]"
+                  moduleName = "Virtualization"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "192">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

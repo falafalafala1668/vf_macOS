@@ -10,6 +10,7 @@ import Cocoa
 class VFMAppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow?
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         NSApp.setActivationPolicy(.regular)
@@ -25,5 +26,8 @@ class VFMAppDelegate: NSObject, NSApplicationDelegate {
     }
 
 
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
 }
 
