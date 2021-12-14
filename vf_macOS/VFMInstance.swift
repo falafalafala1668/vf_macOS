@@ -12,33 +12,35 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
     var eth_if: String?
     var width: Int! = 2880
     var height: Int! = 1800
+    var cpuCount: Int!
+    var memorySize: UInt64?
     
     private let vmURL: URL
     private var identifier: String = UUID().uuidString
     private var hardwareModelData: Data = Data()
     private var machineIdentifierData: Data = Data()
     private var storages: [VZStorageDeviceConfiguration] = []
-    private var cpuCount: Int = 2
-    private var memorySize: UInt64 = 4 * 1024 * 1024 * 1024
     private var ob: NSKeyValueObservation?
-    private let internalDisk:URL
+    private var internalDisk:URL
     
     init(vmPath: String) {
-         vmURL = URL(fileURLWithPath: vmPath)
-         
-         var dic: [String:Any]?
-         do {
-             dic = try PropertyListSerialization.propertyList(from: Data(contentsOf: vmURL.appendingPathComponent("config.plist")), format: nil) as? [String:Any]
-             identifier = dic?[UUID_D] as! String
-             cpuCount = dic?[CPU_D] as! Int
-             memorySize = dic?[MEMORY_D] as! UInt64
-             hardwareModelData = dic?[hID_D] as! Data
-             machineIdentifierData = dic?[mID_D] as! Data
+        vmURL = URL(fileURLWithPath: vmPath)
+        internalDisk = self.vmURL.appendingPathComponent("disk.img")
+        super.init()
+        var dic: [String:Any]?
+        do {
+            dic = try PropertyListSerialization.propertyList(from: Data(contentsOf: vmURL.appendingPathComponent("config.plist")), format: nil) as? [String:Any]
+            identifier = dic?[UUID_D] as! String
+            cpuCount = dic?[CPU_D] as? Int
+            memorySize = dic?[MEMORY_D] as? UInt64
+            hardwareModelData = dic?[hID_D] as! Data
+            machineIdentifierData = dic?[mID_D] as! Data
          } catch {
+            self.cpuCount = 2
+            self.memorySize = 4 * 1024 * 1024 * 1024
             print("Missing config file, creating...")
          }
-        internalDisk = self.vmURL.appendingPathComponent("disk.img")
-         super.init()
+        
     }
     
     func startInstaller(with ipswURL: URL, diskSize: Int) {
@@ -261,7 +263,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         configuration.platform = platform
         
         configuration.cpuCount = cpuCount
-        configuration.memorySize = memorySize
+        configuration.memorySize = memorySize!
         configuration.entropyDevices = [entropy]
         configuration.networkDevices = [networkDevice]
         configuration.graphicsDevices = [graphics]
@@ -275,7 +277,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
     }
     
     private func savePropertyList() throws {
-        let dictionary = [UUID_D:identifier,CPU_D:cpuCount,MEMORY_D:memorySize,hID_D:hardwareModelData,mID_D:machineIdentifierData] as [String : Any]
+        let dictionary = [UUID_D:identifier,CPU_D:cpuCount!,MEMORY_D:memorySize!,hID_D:hardwareModelData,mID_D:machineIdentifierData] as [String : Any]
         let plistData = try PropertyListSerialization.data(fromPropertyList: dictionary, format: .xml, options: 0)
         try plistData.write(to: vmURL.appendingPathComponent("config.plist"))
         

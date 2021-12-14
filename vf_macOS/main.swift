@@ -21,15 +21,15 @@ fileprivate var vmFolder: String?
 fileprivate var eth_if: String?
 fileprivate var cpuCount: Int?
 fileprivate var memory: UInt64?
-fileprivate var diskSize: Int = 32
+fileprivate var diskSize: Int = 64
 fileprivate var addDisk: URL?
 
 func help() {
-    print("\(CommandLine.arguments[0]) -g(GUI) -f [VM Folder Path(Must)] -n(New Install) [ipsw Path] -p(cpu count) [count] -m(Memory Size) -d(Disk size) [32G] -a(Attach img)")
+    print("\(CommandLine.arguments[0]) Syntax: -f <folderPath> <options>\n\t-f <folderPath>\t\t\tVM Folder Path(Must)\n\t-g\t\t\t\t\t\tShow GUI\n\t-n <ipswPath>\t\t\tNew Install with ipsw Path\n\t-p <count>\t\t\t\tCPU Core Count(Default 2)\n\t-m <size>\t\t\t\tMemory Size(GB,min 4GB)\n\t-d <size>\t\t\t\tDisk size(GB,Default 64)\n\t-D <img path>\t\t\tAttach img path")
 }
 
 repeat {
-    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "gn:f:b:p:m:d:a:")
+    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "gn:f:b:p:m:d:D:")
     if ch == -1 {
         break
     }
@@ -49,7 +49,7 @@ repeat {
         memory = UInt64(atoi(optarg))
     case "d":
         diskSize = Int(atoi(optarg))
-    case "a":
+    case "D":
         addDisk = URL(fileURLWithPath: String(cString: optarg))
     default:
         help()
@@ -66,17 +66,25 @@ if vmFolder != nil {
     exit(EXIT_FAILURE)
 }
 
+if cpuCount != nil {
+    inst.cpuCount = cpuCount!
+}
+
+if memory != nil {
+    inst.memorySize = memory!
+}
+
 if addDisk != nil {
     inst.attachDisk(diskURL: addDisk!)
 }
 
 if isCreate {
-    guard let ipsw = ipswPath else {
+    if ipswPath == nil {
         print("No IPSW path")
         help()
         exit(EXIT_FAILURE)
     }
-    inst.startInstaller(with: URL(fileURLWithPath: ipsw), diskSize: diskSize)
+    inst.startInstaller(with: URL(fileURLWithPath: ipswPath!), diskSize: diskSize)
 } else {
     inst.start(withGUI: showGUI)
 }
