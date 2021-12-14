@@ -21,6 +21,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
     private var cpuCount: Int = 2
     private var memorySize: UInt64 = 4 * 1024 * 1024 * 1024
     private var ob: NSKeyValueObservation?
+    private let internalDisk:URL
     
     init(vmPath: String) {
          vmURL = URL(fileURLWithPath: vmPath)
@@ -36,6 +37,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
          } catch {
             print("Missing config file, creating...")
          }
+        internalDisk = self.vmURL.appendingPathComponent("disk.img")
          super.init()
     }
     
@@ -64,8 +66,6 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         guard let configuration = getVMConfiguration(
             hardwareModel: hardwareModel,
             machineIdentifier: machineIdentifier,
-            diskURL: vmURL.appendingPathComponent("disk.img"),
-            auxiliaryStorageURL: vmURL.appendingPathComponent("aux.img"),
             withSound: withGUI
         ) else {
             exit(EXIT_FAILURE)
@@ -142,14 +142,12 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         hardwareModelData = supportedConfig.hardwareModel.dataRepresentation
         machineIdentifierData = machineIdentifier.dataRepresentation
         
-        let diskURL = vmURL.appendingPathComponent("disk.img")
-        
         do {
             let process = Process()
             process.launchPath = "/bin/dd"
             process.arguments = [
                 "if=/dev/zero",
-                "of=\(diskURL.path)",
+                "of=\(internalDisk.path)",
                 "bs=1024m",
                 "seek=\(diskImageSize)",
                 "count=0"
@@ -164,8 +162,6 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         guard let configuration = getVMConfiguration(
             hardwareModel: supportedConfig.hardwareModel,
             machineIdentifier: machineIdentifier,
-            diskURL: diskURL,
-            auxiliaryStorageURL: vmURL.appendingPathComponent("aux.img"),
             withSound: false
         ) else {
             NSLog("Can't get supported config")
@@ -187,6 +183,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
                         self!.ob?.invalidate()
                         do {
                             try self!.savePropertyList()
+                            exit(EXIT_SUCCESS)
                         } catch {
                             NSLog("Error: \(error)")
                             exit(EXIT_FAILURE)
@@ -211,10 +208,22 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         }
     }
     
+    private func attachDisk() {
+        do {
+            let attachment = try VZDiskImageStorageDeviceAttachment(
+                url: internalDisk,
+                readOnly: false
+            )
+            let storage = VZVirtioBlockDeviceConfiguration(attachment: attachment)
+            storages.insert(storage, at: 0)
+        } catch {
+            NSLog("Storage Error: \(error)")
+        }
+    }
+    
     private func getVMConfiguration(hardwareModel: VZMacHardwareModel,
                                     machineIdentifier: VZMacMachineIdentifier,
-                                    diskURL: URL,
-                                    auxiliaryStorageURL: URL, withSound: Bool) -> VZVirtualMachineConfiguration? {
+                                    withSound: Bool) -> VZVirtualMachineConfiguration? {
 
         
         let bootloader = VZMacOSBootLoader()
@@ -234,7 +243,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         let keyboard = VZUSBKeyboardConfiguration()
         let pointingDevice = VZUSBScreenCoordinatePointingDeviceConfiguration()
         
-        attachDisk(diskURL: diskURL)
+        attachDisk()
 
         let configuration = VZVirtualMachineConfiguration()
         configuration.bootLoader = bootloader
@@ -244,7 +253,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         platform.machineIdentifier = machineIdentifier
         
         platform.auxiliaryStorage = try? VZMacAuxiliaryStorage(
-            creatingStorageAt: auxiliaryStorageURL,
+            creatingStorageAt: vmURL.appendingPathComponent("boot.img"),
             hardwareModel: hardwareModel,
             options: [.allowOverwrite]
         )

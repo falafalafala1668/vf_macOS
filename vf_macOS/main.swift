@@ -16,15 +16,20 @@ let mID_D = "mID"
 
 fileprivate var showGUI = false
 fileprivate var isCreate = false
-fileprivate var ipswPath = String()
-fileprivate var vmFolder = String()
-fileprivate var eth_if = ""
+fileprivate var ipswPath: String?
+fileprivate var vmFolder: String?
+fileprivate var eth_if: String?
 fileprivate var cpuCount: Int?
 fileprivate var memory: UInt64?
 fileprivate var diskSize: Int = 32
+fileprivate var addDisk: URL?
+
+func help() {
+    print("\(CommandLine.arguments[0]) -g(GUI) -f [VM Folder Path(Must)] -n(New Install) [ipsw Path] -p(cpu count) [count] -m(Memory Size) -d(Disk size) [32G] -a(Attach img)")
+}
 
 repeat {
-    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "gn:f:b:p:m:d:")
+    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "gn:f:b:p:m:d:a:")
     if ch == -1 {
         break
     }
@@ -44,15 +49,34 @@ repeat {
         memory = UInt64(atoi(optarg))
     case "d":
         diskSize = Int(atoi(optarg))
+    case "a":
+        addDisk = URL(fileURLWithPath: String(cString: optarg))
     default:
-        print("\(CommandLine.arguments[0]) -g(GUI) -f [VM Folder Path(Must)] -n(New Install) [ipsw Path] -p(cpu count) [count] -m(Memory Size) -d(Disk size) [32G]")
+        help()
     }
 } while (true)
 
-let inst = VFMInstance(vmPath: vmFolder)
+let inst: VFMInstance
+
+if vmFolder != nil {
+    inst = VFMInstance(vmPath: vmFolder!)
+} else {
+    print("No VM Folder")
+    help()
+    exit(EXIT_FAILURE)
+}
+
+if addDisk != nil {
+    inst.attachDisk(diskURL: addDisk!)
+}
 
 if isCreate {
-    inst.startInstaller(with: URL(fileURLWithPath: ipswPath), diskSize: diskSize)
+    guard let ipsw = ipswPath else {
+        print("No IPSW path")
+        help()
+        exit(EXIT_FAILURE)
+    }
+    inst.startInstaller(with: URL(fileURLWithPath: ipsw), diskSize: diskSize)
 } else {
     inst.start(withGUI: showGUI)
 }
