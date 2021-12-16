@@ -15,21 +15,24 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
     var cpuCount: Int!
     var memorySize: UInt64?
     
-    private let vmURL: URL
+    private var vmURL: URL!
+    private var bootDiskURL:URL!
+    private var internalDiskURL:URL!
+    private var configURL:URL!
     private var identifier: String = UUID().uuidString
     private var hardwareModelData: Data = Data()
     private var machineIdentifierData: Data = Data()
     private var storages: [VZStorageDeviceConfiguration] = []
     private var ob: NSKeyValueObservation?
-    private var internalDisk:URL
     
     init(vmPath: String) {
         vmURL = URL(fileURLWithPath: vmPath)
-        internalDisk = self.vmURL.appendingPathComponent("disk.img")
-        super.init()
+        internalDiskURL = vmURL.appendingPathComponent("disk.img")
+        configURL = vmURL.appendingPathComponent("config.plist")
+        bootDiskURL = vmURL.appendingPathComponent("boot.img")
         var dic: [String:Any]?
         do {
-            dic = try PropertyListSerialization.propertyList(from: Data(contentsOf: vmURL.appendingPathComponent("config.plist")), format: nil) as? [String:Any]
+            dic = try PropertyListSerialization.propertyList(from: Data(contentsOf: configURL), format: nil) as? [String:Any]
             identifier = dic?[UUID_D] as! String
             cpuCount = dic?[CPU_D] as? Int
             memorySize = dic?[MEMORY_D] as? UInt64
@@ -38,9 +41,12 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
          } catch {
             self.cpuCount = 2
             self.memorySize = 4 * 1024 * 1024 * 1024
-            print("Missing config file, creating...")
-         }
-        
+        }
+        super.init()
+    }
+    
+    @available(*, unavailable, renamed: "init(vmPath:)")
+    override init() {
     }
     
     func startInstaller(with ipswURL: URL, diskSize: Int) {
@@ -60,8 +66,10 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
     }
     
     func start(withGUI: Bool) {
+        
         guard let hardwareModel = VZMacHardwareModel(dataRepresentation: hardwareModelData),
               let machineIdentifier = VZMacMachineIdentifier(dataRepresentation: machineIdentifierData) else {
+                  print("No found HardwareModel and MachineIdentifier, maybe config.plist missing or key not exist")
                   exit(EXIT_FAILURE)
           }
         
@@ -113,7 +121,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
             let storage = VZVirtioBlockDeviceConfiguration(attachment: attachment)
             storages.append(storage)
         } catch {
-            NSLog("Storage Error: \(error)")
+            NSLog("Attach Storage Error: \(error)")
         }
     }
     
@@ -149,7 +157,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
             process.launchPath = "/bin/dd"
             process.arguments = [
                 "if=/dev/zero",
-                "of=\(internalDisk.path)",
+                "of=\(internalDiskURL.path)",
                 "bs=1024m",
                 "seek=\(diskImageSize)",
                 "count=0"
@@ -213,13 +221,14 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
     private func attachDisk() {
         do {
             let attachment = try VZDiskImageStorageDeviceAttachment(
-                url: internalDisk,
+                url: internalDiskURL,
                 readOnly: false
             )
             let storage = VZVirtioBlockDeviceConfiguration(attachment: attachment)
             storages.insert(storage, at: 0)
         } catch {
-            NSLog("Storage Error: \(error)")
+            NSLog("Internal Storage Error: \(error)")
+            exit(EXIT_FAILURE)
         }
     }
     
@@ -255,7 +264,7 @@ class VFMInstance: NSObject, VZVirtualMachineDelegate {
         platform.machineIdentifier = machineIdentifier
         
         platform.auxiliaryStorage = try? VZMacAuxiliaryStorage(
-            creatingStorageAt: vmURL.appendingPathComponent("boot.img"),
+            creatingStorageAt: bootDiskURL,
             hardwareModel: hardwareModel,
             options: [.allowOverwrite]
         )

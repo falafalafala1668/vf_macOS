@@ -34,6 +34,7 @@
 		3337F521274E7DAC005849F9 /* VFMVirtualMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VFMVirtualMachineViewController.swift; sourceTree = "<group>"; };
 		3337F525274E7DAC005849F9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3337F526274E7DAC005849F9 /* VFMInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VFMInstance.swift; sourceTree = "<group>"; };
+		3338531D276B2E910077742B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		337E1683274F629700CA16CB /* VFMAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VFMAppDelegate.swift; sourceTree = "<group>"; };
 		33DD4FE9274E80C200E46DF2 /* vf_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vf_macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +64,7 @@
 		333F08E3274A352D00A1FD65 = {
 			isa = PBXGroup;
 			children = (
+				3338531D276B2E910077742B /* README.md */,
 				33DD4FE9274E80C200E46DF2 /* vf_macOS.entitlements */,
 				338C7B2027634D5E00CA6666 /* Private */,
 				3337F51D274E7DAC005849F9 /* vf_macOS */,
@@ -167,6 +169,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = vf_macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -187,6 +190,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = vf_macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

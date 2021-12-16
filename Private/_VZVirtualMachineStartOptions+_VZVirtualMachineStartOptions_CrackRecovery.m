@@ -8,6 +8,7 @@
 @import Virtualization;
 #import "JRSwizzle.h"
 
+//just joke :)
 @interface _VZVirtualMachineStartOptions : NSObject
 
 - (BOOL)bootMacOSRecovery;

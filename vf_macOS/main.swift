@@ -25,11 +25,11 @@ fileprivate var diskSize: Int = 64
 fileprivate var addDisk: URL?
 
 func help() {
-    print("\(CommandLine.arguments[0]) Syntax: -f <folderPath> <options>\n\t-f <folderPath>\t\t\tVM Folder Path(Must)\n\t-g\t\t\t\t\t\tShow GUI\n\t-n <ipswPath>\t\t\tNew Install with ipsw Path\n\t-p <count>\t\t\t\tCPU Core Count(Default 2)\n\t-m <size>\t\t\t\tMemory Size(GB,min 4GB)\n\t-d <size>\t\t\t\tDisk size(GB,Default 64)\n\t-D <img path>\t\t\tAttach img path")
+    print("\(CommandLine.arguments[0]) Syntax: -f <folderPath> <options>\n\t-f <folderPath>\t\t\tVM Folder Path(Must, Full Path)\n\t-g\t\t\t\t\t\tShow GUI\n\t-n <ipswPath>\t\t\tNew Install with ipsw Path\n\t-p <count>\t\t\t\tCPU Core Count(Default 2)\n\t-m <size>\t\t\t\tMemory Size(GB, min 4)\n\t-d <size>\t\t\t\tDisk size(GB, Default 64)\n\t-D <img path>\t\t\tAttach img path")
 }
 
 repeat {
-    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "gn:f:b:p:m:d:D:")
+    let ch = getopt(CommandLine.argc, CommandLine.unsafeArgv, "gn:f:b:p:m:d:D:h")
     if ch == -1 {
         break
     }
